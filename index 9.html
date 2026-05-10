@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لعبة الحروف</title>
+<style>
+    body {
+        font-family: Tahoma, Arial, sans-serif;
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        width: 90%;
+        max-width: 500px;
+        text-align: center;
+    }
+
+    h1 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    input, button {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-size: 18px;
+    }
+
+    button {
+        background: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+
+    .result {
+        margin-top: 20px;
+        text-align: right;
+        background: #f9f9f9;
+        padding: 15px;
+        border-radius: 10px;
+        display: none;
+    }
+
+    .result p {
+        margin: 8px 0;
+        font-size: 18px;
+    }
+
+    strong {
+        color: #007bff;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🎮 لعبة الحروف</h1>
+
+    <label>اكتب حرف واحد:</label>
+    <input type="text" id="letterInput" maxlength="1" placeholder="مثال: م">
+
+    <button onclick="generateWords()">إظهار الكلمات</button>
+
+    <div class="result" id="resultBox">
+        <p><strong>🌍 دولة:</strong> <span id="country"></span></p>
+        <p><strong>🪑 جماد:</strong> <span id="object"></span></p>
+        <p><strong>👤 اسم:</strong> <span id="name"></span></p>
+        <p><strong>🌿 نبات:</strong> <span id="plant"></span></p>
+    </div>
+</div>
+
+<script>
+const data = {
+    "م": {
+        country: "مصر",
+        object: "مكتب",
+        name: "محمد",
+        plant: "موز"
+    },
+    "س": {
+        country: "سوريا",
+        object: "سرير",
+        name: "سالم",
+        plant: "سمسم"
+    },
+    "ع": {
+        country: "عمان",
+        object: "عجلة",
+        name: "علي",
+        plant: "عنب"
+    },
+    "ب": {
+        country: "البرازيل",
+        object: "باب",
+        name: "بدر",
+        plant: "بقدونس"
+    },
+    "ك": {
+        country: "كندا",
+        object: "كرسي",
+        name: "كريم",
+        plant: "كمثرى"
+    },
+    "ر": {
+        country: "روسيا",
+        object: "راديو",
+        name: "راشد",
+        plant: "رمان"
+    },
+    "ت": {
+        country: "تونس",
+        object: "تلفزيون",
+        name: "تركي",
+        plant: "تمر"
+    },
+    "ج": {
+        country: "جيبوتي",
+        object: "جوال",
+        name: "جاسم",
+        plant: "جزر"
+    }
+};
+
+function generateWords() {
+    const letter = document.getElementById("letterInput").value.trim();
+    const resultBox = document.getElementById("resultBox");
+
+    if (!letter) {
+        alert("اكتب حرف أولاً");
+        return;
+    }
+
+    if (data[letter]) {
+        document.getElementById("country").textContent = data[letter].country;
+        document.getElementById("object").textContent = data[letter].object;
+        document.getElementById("name").textContent = data[letter].name;
+        document.getElementById("plant").textContent = data[letter].plant;
+        resultBox.style.display = "block";
+    } else {
+        document.getElementById("country").textContent = "لا يوجد";
+        document.getElementById("object").textContent = "لا يوجد";
+        document.getElementById("name").textContent = "لا يوجد";
+        document.getElementById("plant").textContent = "لا يوجد";
+        resultBox.style.display = "block";
+    }
+}
+</script>
+
+</body>
+</html>
